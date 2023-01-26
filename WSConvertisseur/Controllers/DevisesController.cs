@@ -13,7 +13,6 @@ namespace WSConvertisseur.Controllers
 
         public DevisesController()
         {
-            
 
             devises.AddRange(new List<Devise>
             {
@@ -33,9 +32,14 @@ namespace WSConvertisseur.Controllers
 
         // GET api/<DevisesController>/5
         [HttpGet("{id}")]
-        public string GetAll(int id, string nomDevise, double taux)
+        public ActionResult<Devise>GetById(int id)
         {
-            return "value";
+            Devise? devise = devises.FirstOrDefault((d) => d.Id == id);
+            if (devise == null)
+            {
+                return NotFound();
+            }
+            return devise;
         }
 
         // POST api/<DevisesController>
