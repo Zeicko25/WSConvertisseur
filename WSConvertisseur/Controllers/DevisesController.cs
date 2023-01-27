@@ -9,7 +9,7 @@ namespace WSConvertisseur.Controllers
     [ApiController]
     public class DevisesController : ControllerBase
     {
-        List<Devise> devises = new List<Devise>();
+       public List<Devise> devises = new List<Devise>();
 
         public DevisesController()
         {
@@ -24,6 +24,7 @@ namespace WSConvertisseur.Controllers
         }
         // GET: api/<DevisesController>
         [HttpGet]
+        [ProducesResponseType(200)]
         public IEnumerable<Devise> GetAll()
         {
             return devises;
@@ -39,6 +40,8 @@ namespace WSConvertisseur.Controllers
 
         // GET api/<DevisesController>/5
         [HttpGet("{id}", Name ="GetDevise")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public ActionResult<Devise>GetById(int id)
         {
             Devise? devise = devises.FirstOrDefault((d) => d.Id == id);
@@ -59,6 +62,7 @@ namespace WSConvertisseur.Controllers
 
         // POST api/<DevisesController>
         [HttpPost]
+        [ProducesResponseType(400)]
         public ActionResult<Devise> Post([FromBody] Devise devise)
         {
             if (!ModelState.IsValid)
