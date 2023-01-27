@@ -29,9 +29,16 @@ namespace WSConvertisseur.Controllers
             return devises;
         }
 
+        /// <summary>
+        /// Get a single currency.
+        /// </summary>
+        /// <returns>Http response</returns>
+        /// <param name="id">The id of the currency</param>
+        /// <response code="200">When the currency id is found</response>
+        /// <response code="404">When the currency id is not found</response>
 
         // GET api/<DevisesController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name ="GetDevise")]
         public ActionResult<Devise>GetById(int id)
         {
             Devise? devise = devises.FirstOrDefault((d) => d.Id == id);
@@ -41,6 +48,14 @@ namespace WSConvertisseur.Controllers
             }
             return devise;
         }
+
+        /// <summary>
+        /// Get a single currency.
+        /// </summary>
+        /// <returns>Http response</returns>
+        /// <param name="devise">The devise of the currency</param>
+        /// <response code="200">valid currency, new record returned</response>
+        /// <response code="400 Bad Request">when the nameDevise is not filled in</response>
 
         // POST api/<DevisesController>
         [HttpPost]
@@ -53,6 +68,18 @@ namespace WSConvertisseur.Controllers
             devises.Add(devise);
             return CreatedAtRoute("GetDevise", new { id = devise.Id }, devise);
         }
+
+        /// <summary>
+        /// Get a single currency.
+        /// </summary>
+        /// <returns>Http response</returns>
+        /// <param name="devise">The devise of the currency</param>
+        /// <param id="id">The devise of the currency</param>
+        /// <response code="204 No Content">currency updated in the list</response>
+        /// <response code="400 Bad Request">incorrect type of information</response>
+        /// <response code="400 Bad Request">bad id in get</response>
+        /// // <response code="404 Not Found">unknown id</response>
+
 
         // PUT api/<DevisesController>/5
         [HttpPut("{id}")]
@@ -74,6 +101,15 @@ namespace WSConvertisseur.Controllers
             devises[index] = devise;
             return NoContent();
         }
+
+        /// <summary>
+        /// Get a single currency.
+        /// </summary>
+        /// <returns>Http response</returns>
+        /// <param name="devise">The devise of the currency</param>
+        /// <param id="id">The devise of the currency</param>
+        /// <response code="204 No Content">currency updated in the list</response>
+        /// <response code="400 Bad Request">incorrect type of information</response>
 
         // DELETE api/<DevisesController>/5
         [HttpDelete("{id}")]

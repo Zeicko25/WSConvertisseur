@@ -14,7 +14,7 @@ namespace WSConvertisseur.Models
             get { return id; }
             set { id = value; }
         }
-
+        [Required]
         public string? NomDevise
         {
             get { return nomDevise; }
